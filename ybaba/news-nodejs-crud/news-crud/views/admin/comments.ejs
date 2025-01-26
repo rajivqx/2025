@@ -1,0 +1,76 @@
+
+<%- include('header') %>
+<div id="admin-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h1 class="admin-heading">All Comments</h1>
+            </div>
+            
+            <div class="col-md-12">
+                <table class="content-table">
+                    <thead>
+                        <th>S.No.</th>
+                        <th>Comment</th>
+                        <th>Post Id</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </thead>
+                    <tbody>
+                                                             
+                        <% comments.forEach((comment,i) => { %>
+                            
+                            <tr>
+                                <td class='id'><%=offset + i+1 %></td>
+                                <td><%= comment.description %></td>
+                                <td><%= comment.post.title %></td>
+                                <td><%= comment.name %></td>
+                                <td><%= comment.formattedDate %></td>
+                                <td><a href='/admin/view-comment/<%= comment._id %>'>
+                                    view
+                                  </a></td>
+                                <td class='edit'><a href='/admin/update-comment/<%= comment._id %>'><i class='fa fa-edit'></i></a></td>
+                                <td class='delete'>
+                                    <a href='/admin/delete-comment/<%= comment._id %>'>
+                                      <i class='fa fa-trash-o'></i>
+                                    </a>
+                                  
+                                </td>
+                              </tr>
+                        <% }) %>
+                            
+                        
+                        
+                    </tbody>
+                </table>
+                <ul class='pagination admin-pagination'>
+                    <% if (currentPage > 1) { %>
+                      <li>
+                        <a href="/admin/comments?page=<%= currentPage - 1 %>">Previous</a>
+                      </li>
+                    <% } %>
+        
+                    <% if (totalPages > 1) { %>
+                      <% for (let i=1; i <= totalPages; i++) { %>
+                        <li class="<%= currentPage === i ? 'active' : '' %>">
+                          <a href="/admin/comments?page=<%= i %>">
+                            <%= i %>
+                          </a>
+                        </li>
+                      <% } %>
+                    <% }  %>
+        
+                    <% if (currentPage < totalPages) { %>
+                      <li><a href="/admin/comments?page=<%= currentPage + 1 %>">Next</a></li>
+                    <% } %>
+                </ul>
+               
+
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer') %>
