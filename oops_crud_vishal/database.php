@@ -7,8 +7,8 @@ class database{
 	
 	protected function connect(){
 		$this->host='localhost';
-		$this->dbusername='wwwabcx_abcuser';
-		$this->dbpassword='&;=mbh));6@{';
+		$this->dbusername='abcuser';
+		$this->dbpassword='gk8f';
 		$this->dbname='wwwabcx_oops_crud_vishal';
 		$con=new mysqli($this->host,$this->dbusername,$this->dbpassword,$this->dbname);
 		return $con;
